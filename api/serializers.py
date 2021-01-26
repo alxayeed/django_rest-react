@@ -3,16 +3,20 @@ from .models import Article
 
 
 
-class ArticleSerializer(serializers.Serializer):
+class ArticleSerializer(serializers.ModelSerializer):
     ''' Serializer for  Article Model'''
 
-    title = serializers.CharField(max_length=100)
-    description = serializers.CharField(max_length=500)
+    class Meta:
+        model = Article
+        fields = '__all__'
 
-    def create(self, validated_data):
-        return Article.objects.create(validated_data)
+    # title = serializers.CharField(max_length=100)
+    # description = serializers.CharField(max_length=500)
 
-    def update(self, instance, validated_data):
-        instance.title = validated_data.get('title', instance.title)
-        instance.description = validated_data.get(
-            'description', instance.description)
+    # def create(self, validated_data):
+    #     return Article.objects.create(validated_data)
+
+    # def update(self, instance, validated_data):
+    #     instance.title = validated_data.get('title', instance.title)
+    #     instance.description = validated_data.get(
+    #         'description', instance.description)
