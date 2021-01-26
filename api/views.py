@@ -13,55 +13,18 @@ from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 
 
-class ArticleList(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+class ArticleList(generics.ListCreateAPIView):
     ''' class view for list of articles'''
 
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, *kwargs)
 
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-
-class ArticleDetail(mixins.RetrieveModelMixin,
-                    mixins.UpdateModelMixin,
-                    mixins.DestroyModelMixin,
-                    generics.GenericAPIView):
+class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
     ''' class view for list of articles'''
 
     queryset = Article.objects.all()
     serializer_class = ArticleSerializer
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, *kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, *kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.delete(request, *args, *kwargs)
-
-    # def put(self, request, id):
-    #     try:
-    #         article = self.get_object(id)
-    #     except Http404:
-    #         return Response('Opps!Not found!', status=status.HTTP_404_NOT_FOUND)
-
-    #     serializer = ArticleSerializer(article, data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #         return Response(serializer.data)
-    #     return Response(serializer.errors)
-
-    # def delete(self, request, id):
-    #     article = self.get_object(id)
-    #     article.delete()
-    #     return Response('Successfully deleted', status=status.HTTP_204_NO_CONTENT)
 
 
 '''
