@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'api',
     # installed app
     'rest_framework',
+    'rest_framework.authtoken',
 
 ]
 

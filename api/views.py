@@ -12,6 +12,8 @@ from django.http import JsonResponse
 from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
