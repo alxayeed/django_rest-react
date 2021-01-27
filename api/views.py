@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Article
-from .serializers import ArticleSerializer
+from .serializers import ArticleSerializer, UserSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import api_view
@@ -14,6 +14,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
