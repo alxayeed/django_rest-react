@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Article
 from django.contrib.auth.models import User
+from rest_framework.authtoken.views import Token
 
 
 class ArticleSerializer(serializers.ModelSerializer):
@@ -18,11 +19,16 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'username', 'password']
 
+        # user list api will not return password
         extra_kwargs = {'password': {
             'write_only': True,
             'required': True
         }}
 
     def create(self, validated_data):
+        # the password will be hashed  in the dabase for every registration
         user = User.objects.create_user(**validated_data)
+
+        # New token will be generated on every registration
+        Token.objects.create(user=user)
         return user
