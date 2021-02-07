@@ -1,8 +1,24 @@
 .App {
-  text-align: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
+.App h1{
+  text-align: center;
+  margin: 50px;
+}
+
+.article-list{
+  /* background-color: antiquewhite; */
+  padding: 5px;
+  text-align: justify;
+  padding-left: 5px;
+  padding-right : 5px;
+}
+
+.article-list hr{
+  color: black;
+}
 
 .App-header {
   
