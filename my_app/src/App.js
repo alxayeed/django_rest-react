@@ -4,6 +4,13 @@ import ArticleList from './components/ArticleList';
 
 function App() {
   const [articles, setArticles] = useState([])
+  const editBtn = (a) => {
+    console.log('Edit Button')
+  }
+
+  const deleteBtn = (a) => {
+    console.log('Delete Button')
+  }
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/articles/', {
@@ -22,7 +29,7 @@ function App() {
   return (
     <div className="container App">
       <h1>Django-React</h1>
-      <ArticleList articles={articles} />
+      <ArticleList articles={articles} editBtn={editBtn} deleteBtn={deleteBtn} />
     </div>
   );
 }

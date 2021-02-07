@@ -16,8 +16,8 @@
   padding-right : 5px;
 }
 
-.article-list hr{
-  color: black;
+.article-list button{
+  margin-inline-end: 10px;
 }
 
 .App-header {
