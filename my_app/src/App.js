@@ -1,16 +1,11 @@
 import './App.css';
 import React, { useState, useEffect } from 'react'
 import ArticleList from './components/ArticleList';
+import Form from './components/Form';
 
 function App() {
   const [articles, setArticles] = useState([])
-  const editBtn = (a) => {
-    console.log('Edit Button')
-  }
 
-  const deleteBtn = (a) => {
-    console.log('Delete Button')
-  }
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/articles/', {
@@ -25,11 +20,25 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
+  const [editArticle, setEditArticle] = useState(null)
+  const [deleteArticle, setDelteArticle] = useState([])
+
+
+
+  const editBtn = (article) => {
+    setEditArticle(article)
+  }
+
+  const deleteBtn = (article) => {
+    setDelteArticle(article)
+  }
 
   return (
     <div className="container App">
       <h1>Django-React</h1>
-      <ArticleList articles={articles} editBtn={editBtn} deleteBtn={deleteBtn} />
+      <ArticleList articles={articles} editBtn={editBtn} deleteBtn={deleteBtn}
+        article={editArticle} />
+      {/* <Form article={editArticle} /> */}
     </div>
   );
 }

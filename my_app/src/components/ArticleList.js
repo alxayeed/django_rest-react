@@ -1,4 +1,5 @@
 import React from 'react'
+import Form from './Form'
 
 function ArticleList(props) {
 
@@ -22,11 +23,15 @@ function ArticleList(props) {
                         <button onClick={() => editBtn(article)} className="btn btn-success">Update</button>
                         <button onClick={() => deleteBtn(article)} className="btn btn-danger">Delete</button>
                         <hr />
+                        <Form />
                     </div>
+
                 )
             }
             )}
+
         </div >
+
     )
 
 }
