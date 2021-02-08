@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import APIService from '../APIService'
 import { useCookies } from 'react-cookie'
+import { useHistory } from 'react-router-dom'
 
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [token, setToken] = useCookies(['mytoken'])
+
+    let history = useHistory()
+
+    useEffect(() => {
+        if (token['mytoken']) {
+            history.push('/articles')
+        }
+    })
 
     const loginBtn = () => {
         APIService.loginUser({ username, password })
