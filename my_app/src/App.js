@@ -5,6 +5,8 @@ import Form from './components/Form';
 
 function App() {
   const [articles, setArticles] = useState([])
+  const [editArticle, setEditArticle] = useState(null)
+  const [deleteArticle, setDelteArticle] = useState([])
 
 
   useEffect(() => {
@@ -20,8 +22,7 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  const [editArticle, setEditArticle] = useState(null)
-  const [deleteArticle, setDelteArticle] = useState([])
+
 
 
 
@@ -36,9 +37,11 @@ function App() {
   return (
     <div className="container App">
       <h1>Django-React</h1>
-      <ArticleList articles={articles} editBtn={editBtn} deleteBtn={deleteBtn}
-        article={editArticle} />
-      {/* <Form article={editArticle} /> */}
+
+
+      <ArticleList articles={articles} editBtn={editBtn} />
+      {editArticle ? <Form article={editArticle} /> : null}
+
     </div>
   );
 }
