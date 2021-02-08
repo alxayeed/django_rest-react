@@ -46,9 +46,23 @@ function App() {
     setArticles(new_articles)
   }
 
+  const articleForm = () => {
+    setEditArticle({ title: '', description: '' })
+  }
+
   return (
     <div className="container App">
-      <h1>Django-React</h1>
+      <div className="row">
+        <div className="col">
+          <h1>Django-React</h1>
+          <br />
+        </div>
+        <div className="col">
+          <button onClick={articleForm} className="btn btn-primary">Insert Article</button>
+        </div>
+
+      </div>
+
 
 
       <ArticleList articles={articles} editBtn={editBtn} />

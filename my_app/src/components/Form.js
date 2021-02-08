@@ -13,7 +13,9 @@ function Form(props) {
     const updateArticle = () => {
         APIService.updateArticle(props.article.id, { title, description })
             .then(resp => props.updateInfo(resp))
+    }
 
+    const insertArticle = () => {
 
     }
 
@@ -32,8 +34,15 @@ function Form(props) {
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}>
 
-                    </textarea>
-                    <button className="btn btn-info" onClick={updateArticle} >Update article</button>
+                    </textarea><br />
+
+                    {
+                        props.article.id ?
+                            <button className="btn btn-info" onClick={updateArticle} >Update article</button>
+                            :
+                            <button className="btn btn-primary" onClick={insertArticle} >Submit article</button>
+                    }
+
                     <br />
                 </div>
             ) : null
