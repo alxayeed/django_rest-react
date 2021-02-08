@@ -1,4 +1,5 @@
 import React from 'react'
+import APIService from '../APIService'
 
 function ArticleList(props) {
 
@@ -7,7 +8,9 @@ function ArticleList(props) {
     }
 
     const deleteBtn = (article) => {
-        props.deleteBtn(article)
+        APIService.deleteArticle(article.id)
+            .then(() => props.deleteBtn(article))
+
     }
 
     return (

@@ -6,7 +6,6 @@ import Form from './components/Form';
 function App() {
   const [articles, setArticles] = useState([])
   const [editArticle, setEditArticle] = useState(null)
-  const [deleteArticle, setDelteArticle] = useState([])
 
 
   useEffect(() => {
@@ -31,7 +30,15 @@ function App() {
   }
 
   const deleteBtn = (article) => {
-    setDelteArticle(article)
+    const new_articles = articles.filter((old_article) => {
+      if (old_article.id === article.id) {
+        return false
+      } else {
+        return true
+      }
+
+    })
+    setArticles(new_articles)
   }
 
   const updateInfo = (article) => {
@@ -70,7 +77,7 @@ function App() {
 
 
 
-      <ArticleList articles={articles} editBtn={editBtn} />
+      <ArticleList articles={articles} editBtn={editBtn} deleteBtn={deleteBtn} />
       {editArticle ? <Form article={editArticle} updateInfo={updateInfo} insertedInfo={insertedInfo} /> : null}
 
     </div>
