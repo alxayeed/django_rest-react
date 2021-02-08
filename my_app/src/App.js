@@ -2,10 +2,12 @@ import './App.css';
 import React, { useState, useEffect } from 'react'
 import ArticleList from './components/ArticleList';
 import Form from './components/Form';
+import { useCookies } from 'react-cookie'
 
 function App() {
   const [articles, setArticles] = useState([])
   const [editArticle, setEditArticle] = useState(null)
+  const [token] = useCookies(['mytoken'])
 
 
   useEffect(() => {
@@ -13,7 +15,7 @@ function App() {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Token 6ecbf7a33df9f5c3b05594b3854b8857072be67a'
+        'Authorization': `Token ${token['mytoken']}`
       }
     })
       .then(resp => resp.json())
