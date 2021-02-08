@@ -42,22 +42,5 @@ function ArticleList(props) {
 export default ArticleList
 
 
-// return (
-//     <div>
-
-//         {props.articles && props.articles.map((article) => {
-//             return (
-
-//                     <h3 >{article.title}</h3>
-//                     <p>{article.description}</p>
-
-//                     
-
-//                         <div>
-//                             <button className="btn btn-danger">Delete</button>
-//                         </div>
-//                         <hr />
-
-
 
 

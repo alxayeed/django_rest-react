@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react'
 import ArticleList from './components/ArticleList';
 import Form from './components/Form';
 import { useCookies } from 'react-cookie'
+import { useHistory } from 'react-router-dom'
 
 function App() {
   const [articles, setArticles] = useState([])
   const [editArticle, setEditArticle] = useState(null)
-  const [token] = useCookies(['mytoken'])
+  const [token, setToken, removeToken] = useCookies(['mytoken'])
+  let history = useHistory()
+
 
 
   useEffect(() => {
@@ -63,16 +66,28 @@ function App() {
   const articleForm = () => {
     setEditArticle({ title: '', description: '' })
   }
+  const logoutBtn = () => {
+    removeToken(['mytoken'])
+  }
+
+  useEffect(() => {
+    if (!token['mytoken']) {
+      history.push('/')
+      // window.location.href = '/'
+    }
+  })
 
   return (
     <div className="container App">
       <div className="row">
+        <button onClick={logoutBtn} className="btn btn-primary">Log out</button>
         <div className="col">
           <h1>Django-React</h1>
           <br />
         </div>
         <div className="col">
           <button onClick={articleForm} className="btn btn-primary">Insert Article</button>
+
         </div>
 
       </div>
