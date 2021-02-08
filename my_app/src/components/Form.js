@@ -7,7 +7,7 @@ function Form(props) {
 
     const updateArticle = () => {
         APIService.updateArticle(props.article.id, { title, description })
-            .then(resp => console.log(resp))
+            .then(resp => props.updateInfo(resp))
 
 
     }

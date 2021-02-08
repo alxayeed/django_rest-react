@@ -34,13 +34,25 @@ function App() {
     setDelteArticle(article)
   }
 
+  const updateInfo = (article) => {
+    const new_articles = articles.map((old_article) => {
+      if (old_article.id === article.id) {
+        return article
+      }
+      else {
+        return old_article
+      }
+    })
+    setArticles(new_articles)
+  }
+
   return (
     <div className="container App">
       <h1>Django-React</h1>
 
 
       <ArticleList articles={articles} editBtn={editBtn} />
-      {editArticle ? <Form article={editArticle} /> : null}
+      {editArticle ? <Form article={editArticle} updateInfo={updateInfo} /> : null}
 
     </div>
   );
