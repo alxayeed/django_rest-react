@@ -25,8 +25,8 @@ function LoginForm() {
 
     const registerBtn = () => {
         APIService.registerUser({ username, password })
-            .then(resp => console.log(resp))
-            .catch(resp => console.log(resp))
+            .then(() => loginBtn())
+            .catch(error => console.log(error))
     }
     return (
         <div className="container App">

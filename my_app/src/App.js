@@ -21,7 +21,7 @@ function App() {
       .then(resp => resp.json())
       .then(resp => setArticles(resp))
       .catch(error => console.log(error))
-  }, [])
+  }, [token])
 
 
 
