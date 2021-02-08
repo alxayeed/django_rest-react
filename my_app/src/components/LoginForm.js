@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import APIService from '../APIService'
+import { useCookies } from 'react-cookie'
 
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [token, setToken] = useCookies(['mytoken'])
 
     const loginBtn = () => {
         APIService.loginUser({ username, password })
-            .then(resp => console.log(resp))
+            .then(resp => setToken('mytoken', resp.token))
             .catch(error => console.log(error))
     }
     return (

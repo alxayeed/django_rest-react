@@ -5,13 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
+import { CookiesProvider } from 'react-cookie'
 
 const Router = () => {
   return (
-    <BrowserRouter>
-      <Route exact path="/" component={LoginForm} />
-      <Route exact path="/articles/" component={App} />
-    </BrowserRouter>
+    <CookiesProvider>
+      <BrowserRouter>
+        <Route exact path="/" component={LoginForm} />
+        <Route exact path="/articles/" component={App} />
+      </BrowserRouter>
+    </CookiesProvider>
+
   )
 }
 
