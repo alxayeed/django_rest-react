@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
+import APIService from '../APIService'
 
 function LoginForm() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const loginBtn = () => {
-        console.log('Login button clicked')
+        APIService.loginUser({ username, password })
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error))
     }
     return (
         <div className="container App">
