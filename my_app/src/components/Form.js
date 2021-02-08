@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import APIService from '../APIService'
 
 function Form(props) {
-    const [title, setTitle] = useState(props.article.title)
-    const [description, setDescription] = useState(props.article.description)
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+
+    useEffect(() => {
+        setTitle(props.article.title)
+        setDescription(props.article.description)
+    }, [props.article])
 
     const updateArticle = () => {
         APIService.updateArticle(props.article.id, { title, description })
